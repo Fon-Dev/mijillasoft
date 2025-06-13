@@ -48,21 +48,47 @@ class PortadaScreen extends StatelessWidget {
         ),
 
         actions: <Widget>[
-          // Botón de menú (sin cambios)
           PopupMenuButton<String>(
-            onSelected: (value) {
-              // Aquí iría la lógica para cada opción seleccionada
-              print('Opción seleccionada: $value');
+            onSelected: (String result) {
+              // Lógica de navegación basada en la opción seleccionada
+              switch (result) {
+                case 'opcion1':
+                  // Navegar a PortadaScreen. Si ya estás aquí, puedes optar por no hacer nada
+                  // o usar pushReplacementNamed si quieres "reiniciar" la pantalla
+                  // en el historial de navegación (útil si vienes de otro lado).
+                  // Para este caso, si ya estás en la Portada, no es estrictamente necesario navegar.
+                  // Si el usuario llega a la Portada desde otra página y selecciona 'Inicio',
+                  // entonces sí que querrías navegar de vuelta.
+                  // Aquí un simple pop hasta la primera ruta para asegurar que no se apilan portadas
+                  Navigator.popUntil(context, ModalRoute.withName('/'));
+                  break;
+                case 'opcion2':
+                  Navigator.pushNamed(
+                    context,
+                    '/proyectos',
+                  ); // Navega a la ruta de Proyectos
+                  break;
+                case 'opcion3':
+                  Navigator.pushNamed(
+                    context,
+                    '/curriculum',
+                  ); // Navega a la ruta de Curriculum
+                  break;
+              }
             },
             itemBuilder:
                 (BuildContext context) => <PopupMenuEntry<String>>[
                   const PopupMenuItem<String>(
                     value: 'opcion1', // Asigna un valor a cada opción
-                    child: Text('Opción 1'),
+                    child: Text('Inicio'),
                   ),
                   const PopupMenuItem<String>(
                     value: 'opcion2',
-                    child: Text('Opción 2'),
+                    child: Text('Proyectos'),
+                  ),
+                  const PopupMenuItem<String>(
+                    value: 'opcion3',
+                    child: Text('Curriculum'),
                   ),
                 ],
           ),
@@ -79,17 +105,39 @@ class PortadaScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              '¡Bienvenido!',
+              '¡Bienvenido a MijillaSoft!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
-              'Esta es la pantalla de portada.',
+              'En el menu superior encontrara lo que necesita',
               style: TextStyle(fontSize: 16),
             ),
           ],
         ),
       ),
+      // --- INICIO: PIE DE PÁGINA AÑADIDO ---
+      bottomNavigationBar: BottomAppBar(
+        // Usamos uno de los colores del degradado para consistencia
+        color: const Color.fromRGBO(184, 212, 166, 1.0),
+        // Elevation para una sombra sutil
+        elevation: 8.0,
+        child: Container(
+          height: 50.0, // Altura del pie de página
+          child: const Center(
+            child: Text(
+              'Creado por Alfonso Sepúlveda García para contactar enviar correo a alfonso.sepulveda.garcia@gmail.com',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                // Color de texto que contrasta bien con el fondo
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+      // --- FIN: PIE DE PÁGINA AÑADIDO ---
     );
   }
 }

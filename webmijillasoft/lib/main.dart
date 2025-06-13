@@ -1,25 +1,30 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
-import 'portada_screen.dart'; // 1. Importa tu nueva pantalla
+import 'package:webmijillasoft/screens/portada_screen.dart';
+import 'package:webmijillasoft/screens/proyectos_screen.dart'; // Importa la nueva pantalla
+import 'package:webmijillasoft/screens/curriculum_screen.dart'; // Importa la nueva pantalla
 
 void main() {
-  runApp(const MainApp());
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MijillaSoft',
-      theme: ThemeData(
-        primarySwatch: Colors.blue, // O el color primario que prefieras
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // 2. Establece PortadaScreen como la pantalla de inicio
-      home: const PortadaScreen(),
-      debugShowCheckedModeBanner:
-          false, // Opcional: para quitar el banner de debug
+      theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const PortadaScreen(),
+        '/proyectos':
+            (context) => const ProyectosScreen(), // Ruta para Proyectos
+        '/curriculum':
+            (context) => const CurriculumScreen(), // Ruta para Curriculum
+      },
     );
   }
 }
