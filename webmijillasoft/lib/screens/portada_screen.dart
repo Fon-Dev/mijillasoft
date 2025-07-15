@@ -122,7 +122,7 @@ class PortadaScreen extends StatelessWidget {
         color: const Color.fromRGBO(184, 212, 166, 1.0),
         // Elevation para una sombra sutil
         elevation: 8.0,
-        child: Container(
+        child: SizedBox(
           height: 50.0, // Altura del pie de página
           child: const Center(
             child: Text(
