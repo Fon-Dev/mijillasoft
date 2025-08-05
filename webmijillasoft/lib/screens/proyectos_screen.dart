@@ -1,5 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:webmijillasoft/widgets/footer.dart';
+import 'package:webmijillasoft/widgets/top_bar.dart';
+
+class ProyectosScreen extends StatelessWidget {
+  const ProyectosScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: const MijillaSoftAppBar(),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.app_registration, // Un icono de ejemplo
+              size: 100.0,
+              color: Color.fromRGBO(184, 212, 166, 0.83),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Aqui van los proyectos',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Aqui pondre los distintos proyectos',
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+       bottomNavigationBar: const MijillaSoftFooter(),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+/*
+import 'package:flutter/material.dart';
+import 'package:webmijillasoft/widgets/footer.dart';
 
 class ProyectosScreen extends StatelessWidget {
   const ProyectosScreen({super.key});
@@ -120,3 +166,4 @@ class ProyectosScreen extends StatelessWidget {
     );
   }
 }
+*/

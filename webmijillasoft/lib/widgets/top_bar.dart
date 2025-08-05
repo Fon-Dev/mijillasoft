@@ -1,0 +1,72 @@
+import 'package:flutter/material.dart';
+
+class MijillaSoftAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MijillaSoftAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const double appBarHeight = kToolbarHeight * 2;
+    return AppBar(
+      toolbarHeight: appBarHeight,
+      title: const Text(''),
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(184, 212, 166, 1.0),
+              Color.fromRGBO(156, 98, 173, 1),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: kToolbarHeight * 0.2,
+            ),
+            child: Image.asset(
+              "assets/images/logonombre.png",
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+      actions: <Widget>[
+        PopupMenuButton<String>(
+          onSelected: (String result) {
+            switch (result) {
+              case 'opcion1':
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+                break;
+              case 'opcion2':
+                Navigator.pushNamed(context, '/proyectos');
+                break;
+              case 'opcion3':
+                Navigator.pushNamed(context, '/curriculum');
+                break;
+            }
+          },
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+            const PopupMenuItem<String>(
+              value: 'opcion1',
+              child: Text('Inicio'),
+            ),
+            const PopupMenuItem<String>(
+              value: 'opcion2',
+              child: Text('Proyectos'),
+            ),
+            const PopupMenuItem<String>(
+              value: 'opcion3',
+              child: Text('Curriculum'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 2);
+}
