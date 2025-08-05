@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webmijillasoft/widgets/footer.dart';
 
 class ProyectosScreen extends StatelessWidget {
   const ProyectosScreen({super.key});
@@ -115,6 +116,7 @@ class ProyectosScreen extends StatelessWidget {
           ],
         ),
       ),
+       bottomNavigationBar: const MijillaSoftFooter(),
     );
   }
 }

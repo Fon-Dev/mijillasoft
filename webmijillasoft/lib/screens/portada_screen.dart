@@ -1,5 +1,6 @@
 // lib/portada_screen.dart
 import 'package:flutter/material.dart';
+import 'package:webmijillasoft/widgets/footer.dart';
 
 class PortadaScreen extends StatelessWidget {
   const PortadaScreen({super.key});
@@ -116,28 +117,7 @@ class PortadaScreen extends StatelessWidget {
           ],
         ),
       ),
-      // --- INICIO: PIE DE PÁGINA AÑADIDO ---
-      bottomNavigationBar: BottomAppBar(
-        // Usamos uno de los colores del degradado para consistencia
-        color: const Color.fromRGBO(184, 212, 166, 1.0),
-        // Elevation para una sombra sutil
-        elevation: 8.0,
-        child: SizedBox(
-          height: 50.0, // Altura del pie de página
-          child: const Center(
-            child: Text(
-              'Creado por Alfonso Sepúlveda García para contactar enviar correo a alfonso.sepulveda.garcia@gmail.com',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                // Color de texto que contrasta bien con el fondo
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ),
-      // --- FIN: PIE DE PÁGINA AÑADIDO ---
+      bottomNavigationBar: const MijillaSoftFooter(),
     );
   }
 }

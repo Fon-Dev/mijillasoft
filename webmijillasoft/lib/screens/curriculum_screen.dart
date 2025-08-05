@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:webmijillasoft/widgets/footer.dart';
+
 
 class CurriculumScreen extends StatelessWidget {
   const CurriculumScreen({super.key});
@@ -112,6 +114,7 @@ class CurriculumScreen extends StatelessWidget {
           ],
         ),
       ),
+     bottomNavigationBar: const MijillaSoftFooter(),
     );
   }
 }
