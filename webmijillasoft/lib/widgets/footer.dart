@@ -12,7 +12,7 @@ class MijillaSoftFooter extends StatelessWidget {
         height: 50.0,
         child: const Center(
           child: Text(
-            'Creado por Alfonso Sepúlveda García. Email fonsgdev@gmail.com',
+            'Creado por Alfonso Sepúlveda García, con Tecnologia Flutter. Email fonsgdev@gmail.com',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

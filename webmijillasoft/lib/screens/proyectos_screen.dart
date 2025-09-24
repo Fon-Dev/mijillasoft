@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// Asegúrate de que las rutas de tus imports sean correctas
 import 'package:webmijillasoft/widgets/footer.dart';
 import 'package:webmijillasoft/widgets/top_bar.dart';
 
@@ -9,160 +10,268 @@ class ProyectosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MijillaSoftAppBar(),
-      body: const Center(
+      body: Center(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // --- CAMBIO AQUÍ: Añadimos las rutas de navegación ---
+            const projectWindows = [
+              _ProjectWindow(
+                icon: Icons.calculate,
+                title: 'I.G.A.',
+                description:
+                    'Programa CRM para la gestión de IBERCOPY (clientes, presupuestos, inventario, etc.).',
+                routeName: '/proyecto-iga', // Ruta para el primer proyecto
+              ),
+              _ProjectWindow(
+                icon: Icons.home,
+                title: 'Geoffrey',
+                description:
+                    'Proyecto I.A. para la domotización del hogar.(gestion de luces, persianas, entrada, etc.)',
+                routeName:
+                    '/proyecto-geoffrey', // Ruta para el segundo proyecto
+              ),
+              _ProjectWindow(
+                icon: Icons.car_crash_rounded,
+                title: 'K.I.T.T.',
+                description:
+                    'Proyecto I.A. aplicada a los vehiculos.(gestion de luces, climatización, apertura, etc.)',
+                routeName: '/proyecto-kitt', // Ruta para el tercer proyecto
+              ),
+            ];
+
+            if (constraints.maxWidth > 700) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                // Mapeamos la lista a widgets Expanded
+                children:
+                    projectWindows
+                        .map((proj) => Expanded(child: proj))
+                        .toList(),
+              );
+            } else {
+              return const SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: projectWindows,
+                ),
+              );
+            }
+          },
+        ),
+      ),
+      bottomNavigationBar: const MijillaSoftFooter(),
+    );
+  }
+}
+
+/// Widget reutilizable para cada "ventana" de proyecto
+class _ProjectWindow extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String description;
+  final String routeName; // --- NUEVO: Propiedad para la ruta ---
+
+  const _ProjectWindow({
+    required this.icon,
+    required this.title,
+    required this.description,
+    required this.routeName, // --- NUEVO: Requerimos la ruta en el constructor ---
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // --- CAMBIO AQUÍ: Envolvemos el Container con InkWell ---
+    return InkWell(
+      onTap: () {
+        // Acción que se ejecuta al pulsar
+        Navigator.pushNamed(context, routeName);
+      },
+      // Esto hace que el efecto ripple tenga los bordes redondeados
+      borderRadius: BorderRadius.circular(15.0),
+      child: Container(
+        margin: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(25.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: const Offset(0, 5),
+            ),
+          ],
+          border: Border.all(
+            color: const Color.fromRGBO(184, 212, 166, 1),
+            width: 2,
+          ),
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          mainAxisSize: MainAxisSize.min,
+          children: [
             Icon(
-              Icons.app_registration, // Un icono de ejemplo
-              size: 100.0,
-              color: Color.fromRGBO(184, 212, 166, 0.83),
+              icon,
+              size: 60.0,
+              color: const Color.fromRGBO(156, 98, 173, 1),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 15),
             Text(
-              'Aqui van los proyectos',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              title,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
-              'Aqui pondre los distintos proyectos',
-              style: TextStyle(fontSize: 16),
+              description,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ],
         ),
       ),
-       bottomNavigationBar: const MijillaSoftFooter(),
     );
   }
 }
 
 
-
-
-
-
-
-
 /*
 import 'package:flutter/material.dart';
+// Asegúrate de que las rutas de tus imports sean correctas
 import 'package:webmijillasoft/widgets/footer.dart';
+import 'package:webmijillasoft/widgets/top_bar.dart';
 
 class ProyectosScreen extends StatelessWidget {
   const ProyectosScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const double appBarHeight = kToolbarHeight * 2;
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: appBarHeight,
-        title: const Text(''), // El título sigue vacío
-        // Eliminamos backgroundColor para que el flexibleSpace controle el fondo
-        // backgroundColor: Color.fromRGBO(184, 212, 166, 0.83),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                // Color inicial (el original, ajustado a opacidad 1.0 si quieres)
-                Color.fromRGBO(184, 212, 166, 1.0),
-                // Color final (un verde más oscuro, puedes ajustarlo)
-                Color.fromRGBO(156, 98, 173, 1),
-                // Puedes añadir más colores si quieres
-              ],
-              begin: Alignment.topLeft, // Inicio del degradado
-              end: Alignment.bottomRight, // Fin del degradado
-              // stops: [0.0, 1.0], // Opcional: puntos de parada para los colores
-            ),
-          ),
-          // Colocamos la imagen como hijo del Container con degradado
-          // Puedes ajustar el alignment o padding si es necesario
-          child: Align(
-            alignment:
-                Alignment.center, // Centra la imagen en el espacio flexible
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: kToolbarHeight * 0.2,
-              ), // Ajusta el padding superior si es necesario
-              child: Image.asset(
-                "assets/images/logonombre.png",
-                fit: BoxFit.contain, // Ajusta cómo se muestra la imagen
-                // Podrías querer limitar la altura de la imagen también
-                // height: kToolbarHeight * 0.8,
-              ),
-            ),
-          ),
-        ),
-
-        actions: <Widget>[
-          PopupMenuButton<String>(
-            onSelected: (String result) {
-              // Lógica de navegación basada en la opción seleccionada
-              switch (result) {
-                case 'opcion1':
-                  // Navegar a PortadaScreen. Si ya estás aquí, puedes optar por no hacer nada
-                  // o usar pushReplacementNamed si quieres "reiniciar" la pantalla
-                  // en el historial de navegación (útil si vienes de otro lado).
-                  // Para este caso, si ya estás en la Portada, no es estrictamente necesario navegar.
-                  // Si el usuario llega a la Portada desde otra página y selecciona 'Inicio',
-                  // entonces sí que querrías navegar de vuelta.
-                  // Aquí un simple pop hasta la primera ruta para asegurar que no se apilan portadas
-                  Navigator.popUntil(context, ModalRoute.withName('/'));
-                  break;
-                case 'opcion2':
-                  Navigator.pushNamed(
-                    context,
-                    '/proyectos',
-                  ); // Navega a la ruta de Proyectos
-                  break;
-                case 'opcion3':
-                  Navigator.pushNamed(
-                    context,
-                    '/curriculum',
-                  ); // Navega a la ruta de Curriculum
-                  break;
-              }
-            },
-            itemBuilder:
-                (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
-                    value: 'opcion1', // Asigna un valor a cada opción
-                    child: Text('Inicio'),
+      appBar: const MijillaSoftAppBar(),
+      // Añadimos el widget Center como padre principal del body
+      body: Center(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Si la pantalla es ancha (como en un PC), usamos una fila (Row)
+            if (constraints.maxWidth > 700) {
+              return const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: _ProjectWindow(
+                      icon: Icons.calculate,
+                      title: 'I.G.A. ',
+                      description:
+                          'Programa CRM para la gestión de IBERCOPY (clientes, presupuestos, inventario, etc.).',
+                    ),
                   ),
-                  const PopupMenuItem<String>(
-                    value: 'opcion2',
-                    child: Text('Proyectos'),
+                  Expanded(
+                    child: _ProjectWindow(
+                      icon: Icons.home,
+                      title: 'Geoffrey',
+                      description:
+                          'Proyecto I.A. para la domotización del hogar.(gestion de luces, persianas, entrada, etc.)',
+                    ),
                   ),
-                  const PopupMenuItem<String>(
-                    value: 'opcion3',
-                    child: Text('Curriculum'),
+                  Expanded(
+                    child: _ProjectWindow(
+                      icon: Icons.car_crash_rounded,
+                      title: 'K.I.T.T.',
+                      description:
+                          'Proyecto I.A. aplicada a los vehiculos.(gestion de luces, climatización, apertura, etc.)',
+                    ),
                   ),
                 ],
+              );
+            } else {
+              // Si la pantalla es estrecha (como en un móvil), usamos una columna (Column)
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment:
+                      MainAxisAlignment
+                          .center, // Centra verticalmente en el espacio del scroll
+                  children: const [
+                    _ProjectWindow(
+                      icon: Icons.calculate,
+                      title: 'I.G.A.',
+                      description:
+                          'Programa CRM para la gestión de IBERCOPY (clientes, presupuestos, inventario, etc.).',
+                    ),
+                    _ProjectWindow(
+                      icon: Icons.draw,
+                      title: 'Geoffrey',
+                      description:
+                          'Proyecto I.A. para la domotización del hogar.(gestion de luces, persianas, entrada, etc.)',
+                    ),
+                    _ProjectWindow(
+                      icon: Icons.data_usage,
+                      title: 'K.I.T.T.',
+                      description:
+                          'Proyecto I.A. aplicada a los vehiculos.(gestion de luces, climatización, apertura, etc.)',
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
+      ),
+      bottomNavigationBar: const MijillaSoftFooter(),
+    );
+  }
+}
+
+/// Widget reutilizable para cada "ventana" de proyecto (sin cambios)
+class _ProjectWindow extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String description;
+
+  const _ProjectWindow({
+    required this.icon,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(25.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+        border: Border.all(
+          color: const Color.fromRGBO(184, 212, 166, 1),
+          width: 2,
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 60.0, color: const Color.fromRGBO(156, 98, 173, 1)),
+          const SizedBox(height: 15),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
           ),
         ],
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              Icons.app_registration, // Un icono de ejemplo
-              size: 100.0,
-              color: Color.fromRGBO(184, 212, 166, 0.83),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Aqui van los proyectos',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Aqui pondre los distintos proyectos',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      ),
-       bottomNavigationBar: const MijillaSoftFooter(),
     );
   }
 }

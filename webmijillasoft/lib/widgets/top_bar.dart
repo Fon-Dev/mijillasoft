@@ -11,21 +11,12 @@ class MijillaSoftAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: const Text(''),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(184, 212, 166, 1.0),
-              Color.fromRGBO(156, 98, 173, 1),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          color: Color.fromRGBO(184, 212, 166, 1.0),
         ),
         child: Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: const EdgeInsets.only(
-              top: kToolbarHeight * 0.2,
-            ),
+            padding: const EdgeInsets.only(top: kToolbarHeight * 0.2),
             child: Image.asset(
               "assets/images/logonombre.png",
               fit: BoxFit.contain,
@@ -35,6 +26,7 @@ class MijillaSoftAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: <Widget>[
         PopupMenuButton<String>(
+          icon: const Icon(Icons.menu, size: 35),
           onSelected: (String result) {
             switch (result) {
               case 'opcion1':
@@ -48,20 +40,21 @@ class MijillaSoftAppBar extends StatelessWidget implements PreferredSizeWidget {
                 break;
             }
           },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-            const PopupMenuItem<String>(
-              value: 'opcion1',
-              child: Text('Inicio'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'opcion2',
-              child: Text('Proyectos'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'opcion3',
-              child: Text('Curriculum'),
-            ),
-          ],
+          itemBuilder:
+              (BuildContext context) => <PopupMenuEntry<String>>[
+                const PopupMenuItem<String>(
+                  value: 'opcion1',
+                  child: Text('Inicio'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'opcion2',
+                  child: Text('Proyectos'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'opcion3',
+                  child: Text('Curriculum'),
+                ),
+              ],
         ),
       ],
     );
