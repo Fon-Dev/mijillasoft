@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// Asegúrate de que las rutas de tus imports sean correctas
+
 import 'package:webmijillasoft/widgets/footer.dart';
 import 'package:webmijillasoft/widgets/top_bar.dart';
 
