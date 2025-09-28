@@ -28,7 +28,7 @@ class CurriculumScreen extends StatelessWidget {
           ],
         ),
       ),
-     bottomNavigationBar: const MijillaSoftFooter(),
+      bottomNavigationBar: const MijillaSoftFooter(),
     );
   }
 }
