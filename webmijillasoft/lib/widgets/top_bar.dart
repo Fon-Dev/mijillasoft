@@ -11,7 +11,7 @@ class MijillaSoftAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: const Text(''),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(184, 212, 166, 1.0),
+          color: Color.fromRGBO(146, 148, 144, 1),
         ),
         child: Align(
           alignment: Alignment.center,

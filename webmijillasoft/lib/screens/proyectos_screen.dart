@@ -17,9 +17,16 @@ class ProyectosScreen extends StatelessWidget {
             const projectWindows = [
               _ProjectWindow(
                 icon: Icons.calculate,
+                title: 'Eduprimari',
+                description:
+                    'Proyecto realizado para mejorar el aprendizaje de las tablas de multiplicar',
+                routeName: '/proyecto-kitt', // Ruta para el tercer proyecto
+              ),
+              _ProjectWindow(
+                icon: Icons.print,
                 title: 'I.G.A.',
                 description:
-                    'Programa CRM para la gestión de IBERCOPY (clientes, presupuestos, inventario, etc.).',
+                    'Programa CRM-ERP para la gestión de la empresa IBERCOPY (clientes, presupuestos, inventario, etc.).',
                 routeName: '/proyecto-iga', // Ruta para el primer proyecto
               ),
               _ProjectWindow(
@@ -104,7 +111,7 @@ class _ProjectWindow extends StatelessWidget {
             ),
           ],
           border: Border.all(
-            color: const Color.fromRGBO(184, 212, 166, 1),
+            color: const Color.fromRGBO(146, 148, 144, 1),
             width: 2,
           ),
         ),
