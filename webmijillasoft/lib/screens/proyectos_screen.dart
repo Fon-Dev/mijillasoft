@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:webmijillasoft/widgets/footer.dart';
 import 'package:webmijillasoft/widgets/top_bar.dart';
 
@@ -20,29 +19,36 @@ class ProyectosScreen extends StatelessWidget {
                 title: 'Eduprimari',
                 description:
                     'Proyecto realizado para mejorar el aprendizaje de las tablas de multiplicar',
-                routeName: '/proyecto-kitt', // Ruta para el tercer proyecto
+                routeName:
+                    '/proyecto-eduprimari', // Ruta para el primer proyecto
+              ),
+              _ProjectWindow(
+                icon: Icons.fastfood,
+                title: 'Valdi',
+                description:
+                    'Proyecto realizado para la gestion de pedidos on-line de una empresa de comida a domicilio',
+                routeName: '/proyecto-valdi', // Ruta para el segundo proyecto
               ),
               _ProjectWindow(
                 icon: Icons.print,
                 title: 'I.G.A.',
                 description:
                     'Programa CRM-ERP para la gestión de la empresa IBERCOPY (clientes, presupuestos, inventario, etc.).',
-                routeName: '/proyecto-iga', // Ruta para el primer proyecto
+                routeName: '/proyecto-iga', // Ruta para el tercer proyecto
               ),
               _ProjectWindow(
                 icon: Icons.home,
                 title: 'Geoffrey',
                 description:
                     'Proyecto I.A. para la domotización del hogar.(gestion de luces, persianas, entrada, etc.)',
-                routeName:
-                    '/proyecto-geoffrey', // Ruta para el segundo proyecto
+                routeName: '/proyecto-geoffrey', // Ruta para el cuarto proyecto
               ),
               _ProjectWindow(
                 icon: Icons.car_crash_rounded,
                 title: 'K.I.T.T.',
                 description:
                     'Proyecto I.A. aplicada a los vehiculos.(gestion de luces, climatización, apertura, etc.)',
-                routeName: '/proyecto-kitt', // Ruta para el tercer proyecto
+                routeName: '/proyecto-kitt', // Ruta para el quinto proyecto
               ),
             ];
 
