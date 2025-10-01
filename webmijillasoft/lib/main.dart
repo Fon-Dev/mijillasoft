@@ -1,13 +1,14 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:webmijillasoft/screens/portada_screen.dart';
-import 'package:webmijillasoft/screens/proyectos_screen.dart'; // Importa la nueva pantalla
+
+import 'package:webmijillasoft/screens/portada_screen.dart'; // Importa las distintas pantallas
+import 'package:webmijillasoft/screens/proyectos_screen.dart';
 import 'package:webmijillasoft/screens/curriculum_screen.dart';
 import 'package:webmijillasoft/screens/ProyectoIGA.dart';
 import 'package:webmijillasoft/screens/ProyectoGeoffrey.dart';
 import 'package:webmijillasoft/screens/ProyectoKitt.dart';
 import 'package:webmijillasoft/screens/ProyectoEduprimari.dart';
-import 'package:webmijillasoft/screens/ProyectoValdi.dart'; // Importa la nueva pantalla
+import 'package:webmijillasoft/screens/ProyectoValdi.dart';
 
 void main() {
   runApp(const MyApp());

@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  syncfusion_flutter_pdfviewer: ^31.1.19
   url_launcher: ^6.2.6
 
 dev_dependencies:
@@ -20,3 +21,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/pdf/

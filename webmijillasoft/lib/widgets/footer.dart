@@ -51,7 +51,7 @@ class MijillaSoftFooter extends StatelessWidget {
             // Reemplazamos IconButton por PopupMenuButton para mostrar varias opciones
             PopupMenuButton<String>(
               icon: const Icon(
-                Icons.public,
+                Icons.person,
                 color: Colors.white,
               ), // Mismo icono
               tooltip: 'Redes Sociales', // Mensaje de ayuda actualizado
