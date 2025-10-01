@@ -52,7 +52,7 @@ class MijillaSoftAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 const PopupMenuItem<String>(
                   value: 'opcion3',
-                  child: Text('Curriculum'),
+                  child: Text('Currículum'),
                 ),
               ],
         ),
