@@ -12,39 +12,60 @@ class ProyectosScreen extends StatelessWidget {
       body: Center(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            // --- CAMBIO AQUÍ: Añadimos las rutas de navegación ---
-            const projectWindows = [
+            // Ahora pasamos un Widget completo (Icon o Image) a cada _ProjectWindow.
+            final projectWindows = [
               _ProjectWindow(
-                icon: Icons.calculate,
+                // Usamos Image.asset para el logo personalizado
+                displayWidget: Image.asset(
+                  'assets/images/icon.png', // <-- ¡IMPORTANTE!
+                  width: 100.0,
+                  height: 100.0,
+                ),
                 title: 'Eduprimari',
                 description:
-                    'Proyecto realizado para mejorar el aprendizaje de las tablas de multiplicar',
+                    'Proyecto realizado para mejorar el aprendizaje de las tablas de multiplicar.',
                 routeName:
                     '/proyecto-eduprimari', // Ruta para el primer proyecto
               ),
               _ProjectWindow(
-                icon: Icons.fastfood,
+                displayWidget: Image.asset(
+                  'assets/images/logo_valdi.png', // <-- ¡IMPORTANTE!
+                  width: 100.0,
+                  height: 100.0,
+                ),
                 title: 'Valdi',
                 description:
                     'Proyecto realizado para la gestion de pedidos on-line de una empresa de comida a domicilio',
                 routeName: '/proyecto-valdi', // Ruta para el segundo proyecto
               ),
               _ProjectWindow(
-                icon: Icons.print,
+                displayWidget: Image.asset(
+                  'assets/images/logo_ibercopy.png', // <-- ¡IMPORTANTE!
+                  width: 200.0,
+                  height: 70.0,
+                ),
                 title: 'I.G.A.',
                 description:
                     'Programa CRM-ERP para la gestión de la empresa IBERCOPY (clientes, presupuestos, inventario, etc.).',
                 routeName: '/proyecto-iga', // Ruta para el tercer proyecto
               ),
               _ProjectWindow(
-                icon: Icons.home,
+                displayWidget: Image.asset(
+                  'assets/images/logo_geoffrey.png', // <-- ¡IMPORTANTE!
+                  width: 100.0,
+                  height: 100.0,
+                ),
                 title: 'Geoffrey',
                 description:
                     'Proyecto I.A. para la domotización del hogar.(gestion de luces, persianas, entrada, etc.)',
                 routeName: '/proyecto-geoffrey', // Ruta para el cuarto proyecto
               ),
               _ProjectWindow(
-                icon: Icons.car_crash_rounded,
+                displayWidget: Image.asset(
+                  'assets/images/logo_kitt.png', // <-- ¡IMPORTANTE!
+                  width: 100.0,
+                  height: 100.0,
+                ),
                 title: 'K.I.T.T.',
                 description:
                     'Proyecto I.A. aplicada a los vehiculos.(gestion de luces, climatización, apertura, etc.)',
@@ -63,7 +84,7 @@ class ProyectosScreen extends StatelessWidget {
                         .toList(),
               );
             } else {
-              return const SingleChildScrollView(
+              return SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: projectWindows,
@@ -80,27 +101,26 @@ class ProyectosScreen extends StatelessWidget {
 
 /// Widget reutilizable para cada "ventana" de proyecto
 class _ProjectWindow extends StatelessWidget {
-  final IconData icon;
+  // --- CAMBIO AQUÍ: Cambiamos 'IconData icon' por 'Widget displayWidget' ---
+  // Esto nos permite pasar cualquier widget, ya sea un Icon, una Image, etc.
+  final Widget displayWidget;
   final String title;
   final String description;
-  final String routeName; // --- NUEVO: Propiedad para la ruta ---
+  final String routeName;
 
   const _ProjectWindow({
-    required this.icon,
+    required this.displayWidget, // Requerimos el nuevo widget
     required this.title,
     required this.description,
-    required this.routeName, // --- NUEVO: Requerimos la ruta en el constructor ---
+    required this.routeName,
   });
 
   @override
   Widget build(BuildContext context) {
-    // --- CAMBIO AQUÍ: Envolvemos el Container con InkWell ---
     return InkWell(
       onTap: () {
-        // Acción que se ejecuta al pulsar
         Navigator.pushNamed(context, routeName);
       },
-      // Esto hace que el efecto ripple tenga los bordes redondeados
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
         margin: const EdgeInsets.all(20.0),
@@ -124,11 +144,8 @@ class _ProjectWindow extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: 60.0,
-              color: const Color.fromRGBO(156, 98, 173, 1),
-            ),
+            // --- CAMBIO AQUÍ: Usamos directamente el widget que nos pasaron ---
+            displayWidget, // Simplemente colocamos el widget aquí
             const SizedBox(height: 15),
             Text(
               title,

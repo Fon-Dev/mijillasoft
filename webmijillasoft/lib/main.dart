@@ -1,4 +1,3 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 
 import 'package:webmijillasoft/screens/portada_screen.dart'; // Importa las distintas pantallas
