@@ -10,7 +10,6 @@ class CurriculumScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MijillaSoftAppBar(),
-      // HEMOS REEMPLAZADO EL BODY ORIGINAL POR ESTE SINGLECHILDSCROLLVIEW
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
@@ -65,6 +64,11 @@ class CurriculumScreen extends StatelessWidget {
                 _buildSectionTitle('Competencias'),
                 _buildSkills(),
                 const Divider(height: 48),
+                // --- NUEVA SECCIÓN DE IDIOMAS ---
+                _buildSectionTitle('Idiomas'),
+                _buildLanguages(),
+                const Divider(height: 48),
+                // ---------------------------------
                 _buildSectionTitle('Cursos Adicionales'),
                 _buildCourseItem(
                   date: 'Mayo 2020 (80 Horas)',
@@ -98,8 +102,47 @@ class CurriculumScreen extends StatelessWidget {
     );
   }
 
-  // AQUÍ COMIENZAN LAS FUNCIONES AUXILIARES PARA CONSTRUIR CADA SECCIÓN
-  // Las he añadido dentro de la clase para mantener todo organizado.
+  // --- WIDGET NUEVO PARA LA SECCIÓN DE IDIOMAS ---
+  Widget _buildLanguages() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildLanguageIndicator('Español', 5),
+        const SizedBox(height: 8),
+        _buildLanguageIndicator('Inglés', 3),
+      ],
+    );
+  }
+
+  // --- WIDGET NUEVO PARA MOSTRAR UN IDIOMA Y SU NIVEL ---
+  Widget _buildLanguageIndicator(String language, int level) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 80, // Ancho fijo para alinear los indicadores
+          child: Text(
+            language,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
+        const SizedBox(width: 16),
+        Row(
+          children: List.generate(5, (index) {
+            return Container(
+              width: 20,
+              height: 20,
+              margin: const EdgeInsets.symmetric(horizontal: 2.0),
+              decoration: BoxDecoration(
+                color: index < level ? Colors.blue[700] : Colors.transparent,
+                border: Border.all(color: Colors.blue[700]!),
+                borderRadius: BorderRadius.circular(2.0),
+              ),
+            );
+          }),
+        ),
+      ],
+    );
+  }
 
   Widget _buildHeader() {
     return Row(
